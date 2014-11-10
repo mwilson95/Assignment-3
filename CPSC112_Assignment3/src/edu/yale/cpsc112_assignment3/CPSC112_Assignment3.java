@@ -20,13 +20,36 @@ public class CPSC112_Assignment3 {
      // Part 1 code goes here (please leave the next few lines at the end of the makeMySecret method)
     if (DEBUG)
     {
-       System.out.println(mySecret);
+    	int a = r.nextInt(7)+1;
+		int b = r.nextInt(7)+1;
+		if (b == a){
+			while (b == a)
+			{
+				b= r.nextInt(7)+1;
+			}
+		}
+		int c = r.nextInt(7)+1;
+		if (c==a || c==b){
+			while (c==a || c==b)
+			{
+				c = r.nextInt(7)+1;
+			}
+		}
+		int d = r.nextInt(7)+1;
+		
+		if (d==a || d==b || d==c){
+			while (d==a || d==b || d==c){
+				d = r.nextInt(7)+1;			
+			}	
+		} 
+    	mySecret= a+""+b+""+c+""+d;
+    	System.out.println(mySecret);
     }
   }
 
   public static boolean isGuessValid(String input) {
     // Part 2 code goes here
-	  System.out.println("h");
+	
   }
 
   public static boolean isGameOver(String input) {
