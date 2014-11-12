@@ -49,7 +49,49 @@ public class CPSC112_Assignment3 {
 
   public static boolean isGuessValid(String input) {
     // Part 2 code goes here
-	
+	  try
+	  {
+		  //this checks the length
+		  int l = input.length();
+		  if (l != 4){
+			  System.out.println("Input must be a 4-digit number with digits between 1 and 7.");
+			  return false; 	
+		  }
+		  //tests if each number is between 1 and 7
+		  for (int i = 0; i <4; i++){
+			  int j;
+			  j= Integer.parseInt(input.substring(i, i+1));
+			  if (j<1 || j>7){
+				  System.out.println("Input must be a 4-digit number with digits between 1 and 7.");
+				  return false;
+			  }
+		  }
+		  int signal=1;
+		  //this tests if each number is equal to any of the others
+		  int w = Integer.parseInt(input.substring(0,1));
+		  int x = Integer.parseInt(input.substring(1,2));
+		  if (x==w){
+			  signal=0;
+		  }
+		  int y = Integer.parseInt(input.substring(2,3));
+		  if (y==w || y==x){
+			  signal=0;
+		  }
+		  int z = Integer.parseInt(input.substring(3,4));
+		  if (z==w || z==x || z==y){
+			  signal=0;
+		  } 
+		  if (signal==0){
+			  System.out.println("Input must be a 4-digit number with digits between 1 and 7.");
+			  return false;
+		  }
+		  return true;
+	  }
+	  catch (Exception e)
+	  {
+		  System.out.println("Input must be a 4-digit number with digits between 1 and 7."); 
+		  return false;
+	  }
   }
 
   public static boolean isGameOver(String input) {
