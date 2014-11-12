@@ -15,12 +15,9 @@ public class CPSC112_Assignment3 {
     isGameOver("2567");
     isGameOver("1432");
     }
-
   public static void makeMySecret() {
      // Part 1 code goes here (please leave the next few lines at the end of the makeMySecret method)
-    if (DEBUG)
-    {
-    	int a = r.nextInt(7)+1;
+	    int a = r.nextInt(7)+1;
 		int b = r.nextInt(7)+1;
 		if (b == a){
 			while (b == a)
@@ -36,15 +33,17 @@ public class CPSC112_Assignment3 {
 			}
 		}
 		int d = r.nextInt(7)+1;
-		
 		if (d==a || d==b || d==c){
 			while (d==a || d==b || d==c){
 				d = r.nextInt(7)+1;			
 			}	
 		} 
-    	mySecret= a+""+b+""+c+""+d;
-    	System.out.println(mySecret);
-    }
+  	mySecret =  a+""+b+""+c+""+d;
+  	if (DEBUG)
+	    {
+  		System.out.println(mySecret);
+	    }
+	  
   }
 
   public static boolean isGuessValid(String input) {
