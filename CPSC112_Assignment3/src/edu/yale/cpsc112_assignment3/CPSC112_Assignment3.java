@@ -14,6 +14,7 @@ public class CPSC112_Assignment3 {
     isGameOver("4321");
     isGameOver("2567");
     isGameOver("1432");
+    
     }
   public static void makeMySecret() {
      // Part 1 code goes here (please leave the next few lines at the end of the makeMySecret method)
