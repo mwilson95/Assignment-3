@@ -7,6 +7,10 @@ public class CPSC112_Assignment3 {
   public static String mySecret = "";
   public static boolean DEBUG = true;
   public static Random r = new Random();
+  public static int exceptions =3;
+  public static int highestGuess=0;
+  public static int liePossible=1;
+
 
   public static void main(String[] args) {
 	makeMySecret();
@@ -44,7 +48,6 @@ public class CPSC112_Assignment3 {
 	    {
   		System.out.println("Secret: "+mySecret);
 	    }
-	  
   }
 
   public static boolean isGuessValid(String input) {
@@ -93,19 +96,34 @@ public class CPSC112_Assignment3 {
 		  return false;
 	  }
   }
-	public static boolean isGameOver (String input){
+	public static boolean isGameOver(String input) {
 		//3.1
 		boolean guessCheck = isGuessValid(input);
 		if (guessCheck == false){
 			return false;
 		}
+		//4.1
+		int currentGuess = Integer.parseInt(input);
+		if (currentGuess > highestGuess){
+			 highestGuess = currentGuess;
+		 }
+		if(currentGuess < highestGuess && exceptions >= 0 && Integer.parseInt(input) != Integer.parseInt(mySecret)){
+			if (exceptions > 0){
+				exceptions--;
+			}
+			System.out.println("Your guess was lower than allowed. You have " + exceptions + " exceptions remaining.");
+			
+		}
+		if (currentGuess > Integer.parseInt(mySecret) && exceptions==0){
+			System.out.println("You're out of exceptions and you've guessed too high! The secret was " + mySecret +".");
+			return true;
+		}
 		//3.2
+		//Does this go here or down there? can you lie but also turn this out?
 		if(Integer.parseInt(input)==Integer.parseInt(mySecret)){
 			System.out.println("You won!");
 			return true;
-		}
-		System.out.print("Guess: " + input + "; ");
-		//isolates the numbers 
+		}		
 		int a = Integer.parseInt(mySecret.substring(0,1));
 		int b = Integer.parseInt(mySecret.substring(1,2));
 		int c = Integer.parseInt(mySecret.substring(2,3));
@@ -141,14 +159,48 @@ public class CPSC112_Assignment3 {
 		if (d==z){
 			num2=num2 + 1;
 		}
-		if (num2 < 4){
-			System.out.println("Result: " + num1+","+num2);
+		System.out.print("Guess: " + input + "; ");
+		//4.2
+		int lie=0;
+		if (liePossible== 1){
+			lie=1;
 		}
+		if(liePossible== -1){
+		//generates the lie variable
+			lie = r.nextInt(3)+1;
+		}
+		//if it lies and it prints out lies. 
+		if (lie==3){
+			int whichNum = r.nextInt(2)+1;
+			if (whichNum==1){
+				int lie1 = r.nextInt(4) + 1;
+				if (lie1==num1 || lie1 < num2){
+					while(lie1==num1 || lie1 < num2){
+						lie1 = r.nextInt(4) + 1;
+					}
+				}
+				System.out.println("Result: "+ lie1 + "," + num2);
+			}
+			if (whichNum==2){
+				int lie2 = r.nextInt(4) + 1;
+				//could add in lie2==3 for both if we never want 4,3 when num1=4
+				if( lie2==num2 || lie2 > num1 || (num1==4 && lie2==4)){
+					while(lie2==num2 || lie2 > num1 || (num1==4 && (lie2==4 || lie2==3))){
+						lie2 = r.nextInt(4)+1;
+					}
+				}
+				System.out.println("Result: "+ num1 + "," + lie2);	
+			}
+			if (DEBUG==true){
+				System.out.println("Lie");
+			}
+		}
+		if (lie==1 || lie==2){
+			if (num2 < 4){
+				System.out.println("Result: " + num1+","+num2);
+			}
+		}
+		liePossible *= -1;
 		return false;
-	}
-
-  
-  
-  
-  
+	 	}  
 }
