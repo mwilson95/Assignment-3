@@ -9,8 +9,8 @@ public class CPSC112_Assignment3 {
   public static Random r = new Random();
 
   public static void main(String[] args) {
-    makeMySecret();
-    isGameOver("1234");
+	makeMySecret();
+	isGameOver("1234");
     isGameOver("4321");
     isGameOver("2567");
     isGameOver("1432");
@@ -42,7 +42,7 @@ public class CPSC112_Assignment3 {
   	mySecret =  a+""+b+""+c+""+d;
   	if (DEBUG)
 	    {
-  		System.out.println(mySecret);
+  		System.out.println("Secret: "+mySecret);
 	    }
 	  
   }
@@ -93,8 +93,62 @@ public class CPSC112_Assignment3 {
 		  return false;
 	  }
   }
+	public static boolean isGameOver (String input){
+		//3.1
+		boolean guessCheck = isGuessValid(input);
+		if (guessCheck == false){
+			return false;
+		}
+		//3.2
+		if(Integer.parseInt(input)==Integer.parseInt(mySecret)){
+			System.out.println("You won!");
+			return true;
+		}
+		System.out.print("Guess: " + input + "; ");
+		//isolates the numbers 
+		int a = Integer.parseInt(mySecret.substring(0,1));
+		int b = Integer.parseInt(mySecret.substring(1,2));
+		int c = Integer.parseInt(mySecret.substring(2,3));
+		int d = Integer.parseInt(mySecret.substring(3,4));
+		int w = Integer.parseInt(input.substring(0,1));
+		int x = Integer.parseInt(input.substring(1,2));
+		int y = Integer.parseInt(input.substring(2,3));
+		int z = Integer.parseInt(input.substring(3,4));
+		//this part finds the second number
+		int num1= 0;
+		if(a==w || a==x || a==y || a==z){
+			num1=num1 + 1;
+		}
+		if(b==w || b==x || b==y || b==z){
+			num1=num1 + 1;
+		}
+		if(c==w || c==x || c==y || c==z){
+			num1=num1 + 1;
+		}
+		if(d==w || d==x || d==y || d==z){
+			num1=num1 + 1;
+		}
+		int num2= 0;
+		if (a==w){
+			num2=num2 + 1;
+		}
+		if (b==x){
+			num2=num2 + 1;
+		}
+		if (c==y){
+			num2=num2 + 1;
+		}
+		if (d==z){
+			num2=num2 + 1;
+		}
+		if (num2 < 4){
+			System.out.println("Result: " + num1+","+num2);
+		}
+		return false;
+	}
 
-  public static boolean isGameOver(String input) {
-    // Parts 3 and 4 code goes here
-  }
+  
+  
+  
+  
 }
