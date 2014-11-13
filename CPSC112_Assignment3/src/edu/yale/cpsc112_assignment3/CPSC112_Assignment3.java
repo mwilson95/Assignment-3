@@ -184,7 +184,7 @@ public class CPSC112_Assignment3 {
 			if (whichNum==2){
 				int lie2 = r.nextInt(4) + 1;
 				//could add in lie2==3 for both if we never want 4,3 when num1=4
-				if( lie2==num2 || lie2 > num1 || (num1==4 && lie2==4)){
+				if( lie2==num2 || lie2 > num1 || (num1==4 && (lie2==4 || lie2==3))){
 					while(lie2==num2 || lie2 > num1 || (num1==4 && (lie2==4 || lie2==3))){
 						lie2 = r.nextInt(4)+1;
 					}
