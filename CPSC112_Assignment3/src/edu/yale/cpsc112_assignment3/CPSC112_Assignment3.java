@@ -17,9 +17,9 @@ public class CPSC112_Assignment3 {
 	isGameOver("1234");
     isGameOver("4321");
     isGameOver("2567");
-    isGameOver("1432");
-    
+    isGameOver("1432"); 
     }
+  
   public static void makeMySecret() {
      // Part 1 code goes here (please leave the next few lines at the end of the makeMySecret method)
 	    int a = r.nextInt(7)+1;
@@ -119,11 +119,7 @@ public class CPSC112_Assignment3 {
 			return true;
 		}
 		//3.2
-		//Does this go here or down there? can you lie but also turn this out?
-		if(Integer.parseInt(input)==Integer.parseInt(mySecret)){
-			System.out.println("You won!");
-			return true;
-		}		
+		//Does this go here or down there? can you lie but also turn this out?		
 		int a = Integer.parseInt(mySecret.substring(0,1));
 		int b = Integer.parseInt(mySecret.substring(1,2));
 		int c = Integer.parseInt(mySecret.substring(2,3));
@@ -159,7 +155,6 @@ public class CPSC112_Assignment3 {
 		if (d==z){
 			num2=num2 + 1;
 		}
-		System.out.print("Guess: " + input + "; ");
 		//4.2
 		int lie=0;
 		if (liePossible== 1){
@@ -169,6 +164,18 @@ public class CPSC112_Assignment3 {
 		//generates the lie variable
 			lie = r.nextInt(3)+1;
 		}
+		if (lie==1 || lie==2){
+			if (num2 < 4 && Integer.parseInt(input)!=Integer.parseInt(mySecret)){
+				System.out.println("Guess: " + input + "; Result: " + num1+","+num2);
+				liePossible *= -1;
+				return false;
+			}
+			if(Integer.parseInt(input)==Integer.parseInt(mySecret)){
+				System.out.println("You won!");
+				return true;
+			}
+		}
+		System.out.print("Guess: " + input + "; ");	
 		//if it lies and it prints out lies. 
 		if (lie==3){
 			int whichNum = r.nextInt(2)+1;
@@ -183,7 +190,6 @@ public class CPSC112_Assignment3 {
 			}
 			if (whichNum==2){
 				int lie2 = r.nextInt(4) + 1;
-				//could add in lie2==3 for both if we never want 4,3 when num1=4
 				if( lie2==num2 || lie2 > num1 || (num1==4 && (lie2==4 || lie2==3))){
 					while(lie2==num2 || lie2 > num1 || (num1==4 && (lie2==4 || lie2==3))){
 						lie2 = r.nextInt(4)+1;
@@ -193,11 +199,6 @@ public class CPSC112_Assignment3 {
 			}
 			if (DEBUG==true){
 				System.out.println("Lie");
-			}
-		}
-		if (lie==1 || lie==2){
-			if (num2 < 4){
-				System.out.println("Result: " + num1+","+num2);
 			}
 		}
 		liePossible *= -1;
