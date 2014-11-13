@@ -112,14 +112,12 @@ public class CPSC112_Assignment3 {
 				exceptions--;
 			}
 			System.out.println("Your guess was lower than allowed. You have " + exceptions + " exceptions remaining.");
-			
 		}
 		if (currentGuess > Integer.parseInt(mySecret) && exceptions==0){
 			System.out.println("You're out of exceptions and you've guessed too high! The secret was " + mySecret +".");
 			return true;
 		}
 		//3.2
-		//Does this go here or down there? can you lie but also turn this out?		
 		int a = Integer.parseInt(mySecret.substring(0,1));
 		int b = Integer.parseInt(mySecret.substring(1,2));
 		int c = Integer.parseInt(mySecret.substring(2,3));
@@ -176,7 +174,6 @@ public class CPSC112_Assignment3 {
 			}
 		}
 		System.out.print("Guess: " + input + "; ");	
-		//if it lies and it prints out lies. 
 		if (lie==3){
 			int whichNum = r.nextInt(2)+1;
 			if (whichNum==1){
