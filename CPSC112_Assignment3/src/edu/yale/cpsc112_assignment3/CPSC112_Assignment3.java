@@ -46,7 +46,7 @@ public class CPSC112_Assignment3 {
   	mySecret =  a+""+b+""+c+""+d;
   	if (DEBUG)
 	    {
-  		System.out.println("Secret: "+mySecret);
+  		System.out.println("Secret: "+ mySecret);
 	    }
   }
 
